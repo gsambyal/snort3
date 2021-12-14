@@ -233,6 +233,7 @@ static DAQ_Verdict distill_verdict(Packet* p)
             verdict = DAQ_VERDICT_IGNORE;
     }
 
+printf("Garima : Verdict after firstpass Verdict %d \n", verdict);
     // Second Pass, now with more side effects
     if ( act->packet_was_dropped() && act->can_block() )
     {
@@ -271,7 +272,7 @@ static DAQ_Verdict distill_verdict(Packet* p)
     }
     else
         verdict = DAQ_VERDICT_PASS;
-
+printf("Garima : Verdict after second pass Verdict %d \n", verdict); 
     if (DAQ_VERDICT_WHITELIST == verdict)
     {
         if (p->flow && p->flow->cannot_trust())
@@ -306,7 +307,7 @@ void Analyzer::post_process_daq_pkt_msg(Packet* p)
     }
     else
         verdict = distill_verdict(p);
-
+    printf("Garima : post_process_daq_pkt_msg function & Verdict is %s \n",SFDAQ::verdict_to_string(verdict));
     if (PacketTracer::is_active())
     {
         PacketTracer::log("Policies: Network %u, Inspection %u, Detection %u\n",
