@@ -551,7 +551,9 @@ void Active::update_status(const Packet* p, bool force)
     }
     else if ( force )
         active_status = AST_FORCE;
-    else if ( active_status != AST_FORCE )
+
+printf("Garima : active status %d\n",active_status);
+    else if ( active_status != AST_FORCE)
     {
         update_status_actionable(p);
     }
@@ -724,6 +726,7 @@ void Active::set_delayed_action(ActiveActionType action, ActiveAction* act, bool
 
     if ( force )
         active_status = AST_FORCE;
+printf("Garima :set_delayed_action active status %d\n",active_status);
 }
 
 void Active::apply_delayed_action(Packet* p)
