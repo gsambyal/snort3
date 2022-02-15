@@ -562,7 +562,6 @@ void Active::update_status(const Packet* p, bool force)
     }
 printf("Garima : active status %d\n",active_status);
 }
-}
 
 void Active::daq_update_status(const Packet* p)
 {
