@@ -732,7 +732,7 @@ printf("Garima :set_delayed_action active status %d\n",active_status);
 void Active::apply_delayed_action(Packet* p)
 {
     bool force = (active_status == AST_FORCE);
-
+printf("Garima : apply_delayed_action active_status %d delayed_active_action %d\n", active_status, delayed_active_action);
     switch ( delayed_active_action )
     {
     case ACT_ALLOW:
