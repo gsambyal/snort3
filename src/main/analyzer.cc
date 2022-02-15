@@ -232,7 +232,7 @@ static DAQ_Verdict distill_verdict(Packet* p)
         else
             verdict = DAQ_VERDICT_IGNORE;
     }
-printf("Garima : Verdict after firstpass Verdict %d and packet_force dropped %d inline_mode %d actve_status %d \n", verdict,act->packet_force_dropped(),p->context->conf->inline_mode() ,act->active_status);
+printf("Garima : Verdict after firstpass Verdict %d and packet_force dropped %d inline_mode %d actve_status %d \n", verdict,act->packet_force_dropped(),p->context->conf->inline_mode() ,p->active->active_status);
     // Second Pass, now with more side effects
     if ( act->packet_was_dropped() && act->can_block() )
     {
