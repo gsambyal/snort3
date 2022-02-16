@@ -210,6 +210,7 @@ void DetectionEngine::finish_inspect_with_latency(Packet* p)
     if ( p->has_ip() )
         check_tags(p);
 
+    printf("Garima : DetectionEngine::finish_inspect_with_latency active status %d \n",p->active->get_status());
     InspectorManager::probe(p);
 }
 
@@ -221,7 +222,7 @@ void DetectionEngine::finish_inspect(Packet* p, bool inspected)
         p->active->apply_delayed_action(p);
 
     p->context->post_detection();
-
+    printf("Garima : DetectionEngine::finish_inspect active status %d \n",p->active->get_status());
     // clear closed sessions here after inspection since non-stream
     // inspectors may depend on flow information
     // this also handles block pending state
@@ -495,6 +496,8 @@ void DetectionEngine::complete(Packet* p)
 
     if ( p->is_detection_enabled(p->packet_flags & PKT_FROM_CLIENT) )
         fp_complete(p);
+
+    printf("Garima : DetectionEngine::complete active status %d \n",p->active->get_status());
 }
 
 void DetectionEngine::resume(Packet* p)
