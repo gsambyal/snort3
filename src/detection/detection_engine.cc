@@ -573,6 +573,7 @@ bool DetectionEngine::detect(Packet* p, bool offload_ok)
 bool DetectionEngine::inspect(Packet* p)
 {
     bool inspected = false;
+    printf("Garima : DetectionEngine::inspect active status %d \n",p->active->get_status());
     {
         PacketLatency::Context pkt_latency_ctx { p };
 

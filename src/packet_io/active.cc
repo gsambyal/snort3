@@ -583,6 +583,7 @@ void Active::drop_packet(const Packet* p, bool force)
     if ( active_action < ACT_DROP )
         active_action = ACT_DROP;
 
+printf("Garima :form drop_packet active status %d\n",active_status);
     update_status(p, force);
 }
 
@@ -671,6 +672,7 @@ void Active::trust_session(Packet* p, bool force)
 void Active::block_session(Packet* p, bool force)
 {
     active_action = ACT_BLOCK;
+printf("Garima :from block_session active status %d\n",active_status);
     update_status(p, force);
 
     if ( force or p->context->conf->inline_mode() or p->context->conf->treat_drop_as_ignore() )
@@ -686,6 +688,7 @@ void Active::reset_session(Packet* p, bool force)
 
 void Active::reset_session(Packet* p, ActiveAction* reject, bool force)
 {
+printf("Garima : from reset_session active status %d\n",active_status);
     active_action = ACT_RESET;
     update_status(p, force);
 
