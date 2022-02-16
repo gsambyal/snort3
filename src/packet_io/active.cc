@@ -804,6 +804,7 @@ void Active::reset()
     delayed_active_action = ACT_ALLOW;
     delayed_reject = nullptr;
     drop_reason = nullptr;
+printf("Garima : active reset active_status %d \n",active_status);
 }
 
 void Active::clear_queue(Packet* p)
