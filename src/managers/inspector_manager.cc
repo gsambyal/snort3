@@ -1192,6 +1192,7 @@ void InspectorManager::internal_execute(Packet* p)
         // for stream_*.
         ::execute<T>(p, fp->session.vec, fp->session.num);
         fp = get_inspection_policy()->framework_policy;
+if(p->active->get_status())
 printf("Garima :InspectorManager::internal_execute sfter ::execute<T>(p, fp->session.vec, fp->session.num) active_status %d\n",p->active->get_status()); 
     }
     // must check between each ::execute()
@@ -1201,6 +1202,7 @@ printf("Garima :InspectorManager::internal_execute sfter ::execute<T>(p, fp->ses
     if ( !p->is_cooked() )
         ::execute<T>(p, fp->packet.vec, fp->packet.num);
 
+if(p->active->get_status())
 printf("Garima :InspectorManager::internal_execute sfter p->execute ::execute<T>(p, fp->session.vec, fp->session.num) active_status %d\n",p->active->get_status()); 
     if ( p->disable_inspect )
         return;
@@ -1210,21 +1212,25 @@ printf("Garima :InspectorManager::internal_execute sfter p->execute ::execute<T>
 
     if ( !p->flow )
     {
+if(p->active->get_status())
 printf("Garima :InspectorManager::internal_execute sfter p->flow ::execute<T>(p, fp->session.vec, fp->session.num) active_status %d\n",p->active->get_status()); 
         if (fp_dft != fp)
             ::execute<T>(p, fp_dft->network.vec, fp_dft->network.num);
         ::execute<T>(p, fp->network.vec, fp->network.num);
+if(p->active->get_status())
 printf("Garima :InspectorManager::internal_execute sfter  fp_dft !=fp x::execute<T>(p, fp->session.vec, fp->session.num) active_status %d\n",p->active->get_status()); 
         if ( p->disable_inspect )
             return;
 
         ::execute<T>(p, fp_dft->control.vec, fp_dft->control.num);
+if(p->active->get_status())
 printf("Garima :InspectorManager::internal_execute sfter  p->disabke_inspect x::execute<T>(p, fp->session.vec, fp->session.num) active_status %d\n",p->active->get_status()); 
     }
     else
     {
         if ( !p->has_paf_payload() and p->flow->flow_state == Flow::FlowState::INSPECT )
             p->flow->session->process(p);
+if(p->active->get_status())
 printf("Garima :InspectorManager::internal_execute sfter  p->flow->session->process active_status %d\n",p->active->get_status()); 
         if ( !p->flow->service )
         {
@@ -1232,6 +1238,7 @@ printf("Garima :InspectorManager::internal_execute sfter  p->flow->session->proc
                 ::execute<T>(p, fp_dft->network.vec, fp_dft->network.num);
             ::execute<T>(p, fp->network.vec, fp->network.num);
         }
+if(p->active->get_status())
 printf("Garima :InspectorManager::internal_execute sfter  p->flow->service active_status %d\n",p->active->get_status()); 
 
         if ( p->disable_inspect )
@@ -1239,9 +1246,11 @@ printf("Garima :InspectorManager::internal_execute sfter  p->flow->service activ
 
         if ( p->flow->full_inspection() )
             full_inspection<T>(p);
+if(p->active->get_status())
 printf("Garima :InspectorManager::internal_execute sfter  p->flow->full_inspection active_status %d\n",p->active->get_status()); 
         if ( !p->disable_inspect and !p->flow->is_inspection_disabled() )
             ::execute<T>(p, fp_dft->control.vec, fp_dft->control.num);
+if(p->active->get_status())
 printf("Garima :InspectorManager::internal_execute sfter disable_inspect and !p->flow->is_inspection_disabled active_status %d\n",p->active->get_status()); 
     }
 
