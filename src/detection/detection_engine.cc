@@ -594,15 +594,19 @@ bool DetectionEngine::inspect(Packet* p)
             enable_content(p);
             p->alt_dsize = 0;  // FIXIT-M should be redundant
 
+    printf("Garima : DetectionEngine::inspect else part after enable content active status %d \n",p->active->get_status());
             InspectorManager::execute(p);
             inspected = true;
 
+    printf("Garima : DetectionEngine::inspect else part after InspectorManager::execute active status %d \n",p->active->get_status());
             if ( !all_disabled(p) )
             {
+    printf("Garima : DetectionEngine::inspect else part after all disabled active status %d \n",p->active->get_status());
                 if ( detect(p, true) )
                     return false; // don't finish out offloaded packets
             }
         }
+    printf("Garima : DetectionEngine::inspect else part after detect active status %d \n",p->active->get_status());
         finish_inspect_with_latency(p);
     }
     finish_inspect(p, inspected);
