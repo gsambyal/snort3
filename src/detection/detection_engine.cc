@@ -583,11 +583,14 @@ bool DetectionEngine::inspect(Packet* p)
                 snort::get_network_policy()->checksum_drops(p->ptrs.decode_flags &
                     DECODE_ERR_CKSUM_ALL) )
             {
+    printf("Garima : DetectionEngine::inspect drop packet active status %d \n",p->active->get_status());
                 p->active->drop_packet(p);
+    printf("Garima : DetectionEngine::inspect after drop packet active status %d \n",p->active->get_status());
             }
         }
         else
         {
+    printf("Garima : DetectionEngine::inspect else part active status %d \n",p->active->get_status());
             enable_content(p);
             p->alt_dsize = 0;  // FIXIT-M should be redundant
 
